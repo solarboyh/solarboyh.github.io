@@ -1,0 +1,226 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>redis与微服务知识回顾 | solarboyh的雅间</title><meta name="keywords" content="redis,微服务"><meta name="author" content="solarboyh,841796739@qq.com"><meta name="copyright" content="solarboyh"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="为什么使用缓存 高性能 高可用  什么是缓存穿透，缓存击穿，缓存雪崩，怎么解决 缓存穿透：缓存中与数据库中都查不到。解决方案： 1、对参数进行合法性校验 2、将数据库中没有查到结果的数据也写入到缓存，这是要注意为了防止redis被无用的Key占满，这一类缓存的有效期要设置的短一点 3、引入布隆过滤器，在访问redis之前判断数据是否存在。要注意布隆过滤器存在一定的误判率，并且，布隆过滤器只能加数据">
+<meta property="og:type" content="article">
+<meta property="og:title" content="redis与微服务知识回顾">
+<meta property="og:url" content="http://example.com/2021/12/15/redis%E4%B8%8E%E5%BE%AE%E6%9C%8D%E5%8A%A1/index.html">
+<meta property="og:site_name" content="solarboyh的雅间">
+<meta property="og:description" content="为什么使用缓存 高性能 高可用  什么是缓存穿透，缓存击穿，缓存雪崩，怎么解决 缓存穿透：缓存中与数据库中都查不到。解决方案： 1、对参数进行合法性校验 2、将数据库中没有查到结果的数据也写入到缓存，这是要注意为了防止redis被无用的Key占满，这一类缓存的有效期要设置的短一点 3、引入布隆过滤器，在访问redis之前判断数据是否存在。要注意布隆过滤器存在一定的误判率，并且，布隆过滤器只能加数据">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/img/wallhaven-72eq5o.jpg">
+<meta property="article:published_time" content="2021-12-15T01:17:07.000Z">
+<meta property="article:modified_time" content="2021-12-15T03:03:17.748Z">
+<meta property="article:author" content="solarboyh">
+<meta property="article:tag" content="redis">
+<meta property="article:tag" content="微服务">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/img/wallhaven-72eq5o.jpg"><link rel="shortcut icon" href="/img/wallhaven-57m2w5.jpg"><link rel="canonical" href="http://example.com/2021/12/15/redis%E4%B8%8E%E5%BE%AE%E6%9C%8D%E5%8A%A1/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'redis与微服务知识回顾',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2021-12-15 11:03:17'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if (GLOBAL_CONFIG_SITE.isHome && /iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 5.4.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/0A3AE7A53E92C9A9515AA54FBC6FB163.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">8</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">9</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">2</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fa fa-heartbeat"></i><span> 清单</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/Gallery/"><i class="fa-fw fas fa-images"></i><span> 照片</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/img/wallhaven-72eq5o.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">solarboyh的雅间</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fa fa-heartbeat"></i><span> 清单</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/Gallery/"><i class="fa-fw fas fa-images"></i><span> 照片</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">redis与微服务知识回顾</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2021-12-15T01:17:07.000Z" title="发表于 2021-12-15 09:17:07">2021-12-15</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2021-12-15T03:03:17.748Z" title="更新于 2021-12-15 11:03:17">2021-12-15</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E5%AD%A6%E4%B9%A0/">学习</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="redis与微服务知识回顾"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h3 id="为什么使用缓存"><a href="#为什么使用缓存" class="headerlink" title="为什么使用缓存"></a>为什么使用缓存</h3><ol>
+<li>高性能</li>
+<li>高可用</li>
+</ol>
+<h3 id="什么是缓存穿透，缓存击穿，缓存雪崩，怎么解决"><a href="#什么是缓存穿透，缓存击穿，缓存雪崩，怎么解决" class="headerlink" title="什么是缓存穿透，缓存击穿，缓存雪崩，怎么解决"></a>什么是缓存穿透，缓存击穿，缓存雪崩，怎么解决</h3><ul>
+<li><p>缓存穿透：缓存中与数据库中都查不到。<br>解决方案： 1、对参数进行合法性校验 2、将数据库中没有查到结果的数据也写入到缓存，这是要注意为了防止redis被无用的Key占满，这一类缓存的有效期要设置的短一点 3、引入布隆过滤器，在访问redis之前判断数据是否存在。要注意布隆过滤器存在一定的误判率，并且，布隆过滤器只能加数据不能减数据。</p>
+</li>
+<li><p>缓存击穿：缓存中没有，数据库中有。一般是出现在缓存数据初始化以及key过期了的情况，他的问题在于，重新写入缓存需要一定的时间，如果是在高并发场景下，过多的请求就会瞬间写道DB上，给DB造成很大的压力。<br>解决方案：1、设置热点缓存永不过期。这时要注意在value当中包含一个逻辑上的过期时间，然后另起一个线程，定期重建这些缓存。 2、加载DB的时候要防止并发。</p>
+</li>
+<li><p>缓存雪崩：缓存大面积过期，导致请求都被转发到DB。<br>解决方案：1、把缓存的失效时间分散开。例如，在原有的统一时效时间基础上，增加一个随机值。2、对热点数据设置永不过期。</p>
+</li>
+</ul>
+<h3 id="如何保证redis与数据库的数据一致"><a href="#如何保证redis与数据库的数据一致" class="headerlink" title="如何保证redis与数据库的数据一致"></a>如何保证redis与数据库的数据一致</h3><ul>
+<li><p>先删缓存，在写数据库的解决方案(要求写操作不会太频繁)：1、先操作缓存，但是不删除缓存。将缓存修改为一个特殊值，客户端读缓存时，发现是默认值，就会休眠一小会，再去查一次redis  特殊值对业务有侵入。休眠时间可能会多次重复，对性能有影响。<br>2、延时双删。先删除缓存，然后在写数据库，休眠一会，再次删除缓存。如果数据写操作很频繁，同样还是会有脏数据的问题。</p>
+</li>
+<li><p>先写数据库，再删缓存：如果数据写完之后，缓存删除失败，数据就会不一致。<br>解决方案：1、给缓存设置一个过期时间 问题：过期时间内，缓存数据不会更新。 2、引入MQ保证原子性</p>
+</li>
+</ul>
+<h3 id="如何设计一个分布式锁，如何对锁性能进行优化"><a href="#如何设计一个分布式锁，如何对锁性能进行优化" class="headerlink" title="如何设计一个分布式锁，如何对锁性能进行优化"></a>如何设计一个分布式锁，如何对锁性能进行优化</h3><p>分布式锁的本质：就是在所有进程都能访问的一个地方，设置一个资源锁，让这些进程都来竞争锁资源。通常对于分布式锁，会要求相应快、性能高、与业务无关。<br>redis实现分布式锁：setnx  expire key locktime：设置key的有效时长。del key：删除。getset key value：先GET再SET，先返回key对应的值，如果没有就返回空。然后再将key设置成value。</p>
+<ol>
+<li><p>最简单的分布式锁：setnx加锁，del解锁。 问题：如果获取到锁的进程执行失败，它就永远不会主动解锁，那这个锁就被锁死了。</p>
+</li>
+<li><p>给锁设置过期时长(expire)：问题：setnx和expire并不是原子性的。所以获取到锁的进程有可能还没有执行expire指令，就挂了，这是所还是会被锁死。</p>
+</li>
+<li><p>将锁的内容设置为过期时间(客户端时间+过期时长)，SETNX获取锁失败时，拿这个时间跟当前时间比对，如果是过期的锁，就先删除锁，再重新上锁。问题：在高并发场景下，会产生多个进程同时拿到锁的情况。</p>
+</li>
+<li><p>setNX失败后，获取锁上的时间戳，然后用getset，将自己的过期时间更新上去，并获取旧值。如果这个旧值，跟之前获得的时间戳是不一致的，就表示这个锁已经被其他进程占用了，自己就要放弃竞争锁。<br> public boolean tryLock(RedisConnection conn){</p>
+<pre><code> long nowTime=System.currnetTimeMillis();
+ long expireTime=nowTime+1000
+ if(conn.SETNX(&quot;mykey&quot;,expireTime)==1)&#123;
+     conn,EXPIRE(&quot;mykey&quot;,1000);
+     return  true;
+ &#125;else&#123;
+     long oldVal =conn.get(&quot;mykey&quot;);
+     if(oldVal!=null &amp;&amp; oldVal &lt; nowTime)&#123;
+         long currentVal = conn.GETSET(&quot;mykey&quot;,expireTime);
+         if(oldVal == curentVal)&#123;
+             conn.EXPIRE(&quot;mykey&quot;,1000);
+             return true;
+         &#125;
+         return false;
+     &#125;
+     return false;
+ &#125;
+</code></pre>
+<p> }<br> DEL</p>
+</li>
+<li><p>上面就形成了一个比较高效的分布式锁，分析一下，上面各种诱惑的根本问题在于SETNX和EXPIRE两个指令无法保证原子性</p>
+</li>
+</ol>
+<h3 id="redis如何配置Key的过期时间，他的实现原理是什么"><a href="#redis如何配置Key的过期时间，他的实现原理是什么" class="headerlink" title="redis如何配置Key的过期时间，他的实现原理是什么"></a>redis如何配置Key的过期时间，他的实现原理是什么</h3><p>redis设置key的过期时间：1.expire 2.setnx<br>实现原理：</p>
+<ol>
+<li>定期删除：每隔一段时间，执行一次删除过期key的操作。</li>
+<li>懒汉式删除：当使用get、getset等指令去获取数据时，判断key是否过期，过期后，就先把key删除，在执行后面的操作。<br>redis定期删除时会遍历每个db（默认16个），检查当前库中指定个数的key（默认20个）。随机抽查这些key，如果有过期的，就删除</li>
+</ol>
+<h3 id="海量数据下，如何快速查找一条记录"><a href="#海量数据下，如何快速查找一条记录" class="headerlink" title="海量数据下，如何快速查找一条记录"></a>海量数据下，如何快速查找一条记录</h3><ol>
+<li>使用布隆过滤器，快速过滤不存在的记录。<br>使用redis的bitmap结构来实现布隆过滤器。</li>
+<li>在redis中建立数据缓存<br>以普通字符串的形式来存储，(userId-&gt;user.json)。以一个hash来存储一条记录(userId key-&gt;username field-&gt;userAge)。以一个整的hash来存储所有的数据Userinfo-&gt;field就用userId，value就用user.json</li>
+</ol>
+<p>  缓存击穿：对不存在的数据也建立key。这些key都是经过布隆过滤器的，所以一般不会过多。<br>  缓存过期：将热点数据设置为永不过期。定期重建缓存。使用分布式锁重建缓存。</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:841796739@qq.com">solarboyh</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2021/12/15/redis%E4%B8%8E%E5%BE%AE%E6%9C%8D%E5%8A%A1/">http://example.com/2021/12/15/redis%E4%B8%8E%E5%BE%AE%E6%9C%8D%E5%8A%A1/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://example.com" target="_blank">solarboyh的雅间</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/redis/">redis</a><a class="post-meta__tags" href="/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1/">微服务</a></div><div class="post_share"><div class="social-share" data-image="/img/wallhaven-72eq5o.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/2021/12/14/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/"><img class="next-cover" src="/img/wallhaven-72rxqo.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">消息队列知识小结</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/0A3AE7A53E92C9A9515AA54FBC6FB163.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">solarboyh</div><div class="author-info__description"></div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">8</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">标签</div><div class="length-num">9</div></a></div><div class="card-info-data-item is-center"><a href="/categories/"><div class="headline">分类</div><div class="length-num">2</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>公告</span></div><div class="announcement_content">自用小博客</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E4%BD%BF%E7%94%A8%E7%BC%93%E5%AD%98"><span class="toc-number">1.</span> <span class="toc-text">为什么使用缓存</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E7%BC%93%E5%AD%98%E7%A9%BF%E9%80%8F%EF%BC%8C%E7%BC%93%E5%AD%98%E5%87%BB%E7%A9%BF%EF%BC%8C%E7%BC%93%E5%AD%98%E9%9B%AA%E5%B4%A9%EF%BC%8C%E6%80%8E%E4%B9%88%E8%A7%A3%E5%86%B3"><span class="toc-number">2.</span> <span class="toc-text">什么是缓存穿透，缓存击穿，缓存雪崩，怎么解决</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E4%BF%9D%E8%AF%81redis%E4%B8%8E%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9A%84%E6%95%B0%E6%8D%AE%E4%B8%80%E8%87%B4"><span class="toc-number">3.</span> <span class="toc-text">如何保证redis与数据库的数据一致</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E8%AE%BE%E8%AE%A1%E4%B8%80%E4%B8%AA%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81%EF%BC%8C%E5%A6%82%E4%BD%95%E5%AF%B9%E9%94%81%E6%80%A7%E8%83%BD%E8%BF%9B%E8%A1%8C%E4%BC%98%E5%8C%96"><span class="toc-number">4.</span> <span class="toc-text">如何设计一个分布式锁，如何对锁性能进行优化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#redis%E5%A6%82%E4%BD%95%E9%85%8D%E7%BD%AEKey%E7%9A%84%E8%BF%87%E6%9C%9F%E6%97%B6%E9%97%B4%EF%BC%8C%E4%BB%96%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86%E6%98%AF%E4%BB%80%E4%B9%88"><span class="toc-number">5.</span> <span class="toc-text">redis如何配置Key的过期时间，他的实现原理是什么</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B5%B7%E9%87%8F%E6%95%B0%E6%8D%AE%E4%B8%8B%EF%BC%8C%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E6%9F%A5%E6%89%BE%E4%B8%80%E6%9D%A1%E8%AE%B0%E5%BD%95"><span class="toc-number">6.</span> <span class="toc-text">海量数据下，如何快速查找一条记录</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2021/12/15/redis%E4%B8%8E%E5%BE%AE%E6%9C%8D%E5%8A%A1/" title="redis与微服务知识回顾"><img src="/img/wallhaven-72eq5o.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="redis与微服务知识回顾"/></a><div class="content"><a class="title" href="/2021/12/15/redis%E4%B8%8E%E5%BE%AE%E6%9C%8D%E5%8A%A1/" title="redis与微服务知识回顾">redis与微服务知识回顾</a><time datetime="2021-12-15T01:17:07.000Z" title="发表于 2021-12-15 09:17:07">2021-12-15</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/12/14/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/" title="消息队列知识小结"><img src="/img/wallhaven-72rxqo.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="消息队列知识小结"/></a><div class="content"><a class="title" href="/2021/12/14/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/" title="消息队列知识小结">消息队列知识小结</a><time datetime="2021-12-14T05:47:07.000Z" title="发表于 2021-12-14 13:47:07">2021-12-14</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/12/14/JVM/" title="JVM学习"><img src="/img/wallhaven-x8eydz.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="JVM学习"/></a><div class="content"><a class="title" href="/2021/12/14/JVM/" title="JVM学习">JVM学习</a><time datetime="2021-12-14T00:47:07.000Z" title="发表于 2021-12-14 08:47:07">2021-12-14</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/12/13/%E7%BD%91%E7%BB%9C/" title="JAVA网络通信"><img src="/img/wallhaven-q2oxll.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="JAVA网络通信"/></a><div class="content"><a class="title" href="/2021/12/13/%E7%BD%91%E7%BB%9C/" title="JAVA网络通信">JAVA网络通信</a><time datetime="2021-12-13T01:47:07.000Z" title="发表于 2021-12-13 09:47:07">2021-12-13</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/12/12/%E5%B9%B6%E5%8F%91%E5%AD%A6%E4%B9%A0/" title="对于并发的简单学习及理解"><img src="/img/wallhaven-x89y8l.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="对于并发的简单学习及理解"/></a><div class="content"><a class="title" href="/2021/12/12/%E5%B9%B6%E5%8F%91%E5%AD%A6%E4%B9%A0/" title="对于并发的简单学习及理解">对于并发的简单学习及理解</a><time datetime="2021-12-12T01:47:07.000Z" title="发表于 2021-12-12 09:47:07">2021-12-12</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('/img/wallhaven-y89del.png')"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2021 By solarboyh</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text"><a target="_blank" rel="noopener" href="https://solarboyh.github.io/">Hi, welcome to my blog</a>!</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script>var preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',preloader.endLoading())</script><div class="js-pjax"></div><canvas class="fireworks" mobile="false"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/fireworks.min.js"></script><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="false" data-click="true"></script><script defer="defer" id="fluttering_ribbon" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-fluttering-ribbon.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = true;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
