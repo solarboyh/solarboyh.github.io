@@ -1,0 +1,223 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>学习 | solarboyh的雅间</title><meta name="keywords" content="学习"><meta name="author" content="solarboyh,841796739@qq.com"><meta name="copyright" content="solarboyh"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="面向对象三大特征封装，也就是把客观事物封装成抽象的类，并且类可以把自己的数据和方法只让可信的类或者对象操作，对不可信的进行信息隐藏。继承是指这样一种能力：它可以使用现有类的所有功能，并在无需重新编写原来的类的情况下对这些功能进行扩展多态允许将子类类型的指针赋值给父类类型的指针。 i++， ++i 重写与重载定义不同—重载是定义相同的方法名，参数不同；重写是子类重写父类的方法范围不同—重载是在一个">
+<meta property="og:type" content="article">
+<meta property="og:title" content="学习">
+<meta property="og:url" content="http://example.com/2021/12/07/markdown%E8%AF%AD%E6%B3%95%20-%20%E5%89%AF%E6%9C%AC/index.html">
+<meta property="og:site_name" content="solarboyh的雅间">
+<meta property="og:description" content="面向对象三大特征封装，也就是把客观事物封装成抽象的类，并且类可以把自己的数据和方法只让可信的类或者对象操作，对不可信的进行信息隐藏。继承是指这样一种能力：它可以使用现有类的所有功能，并在无需重新编写原来的类的情况下对这些功能进行扩展多态允许将子类类型的指针赋值给父类类型的指针。 i++， ++i 重写与重载定义不同—重载是定义相同的方法名，参数不同；重写是子类重写父类的方法范围不同—重载是在一个">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/img/wallhaven-wqxjm7.png">
+<meta property="article:published_time" content="2021-12-07T05:50:07.000Z">
+<meta property="article:modified_time" content="2022-01-25T06:57:39.908Z">
+<meta property="article:author" content="solarboyh">
+<meta property="article:tag" content="学习">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/img/wallhaven-wqxjm7.png"><link rel="shortcut icon" href="/img/wallhaven-57m2w5.jpg"><link rel="canonical" href="http://example.com/2021/12/07/markdown%E8%AF%AD%E6%B3%95%20-%20%E5%89%AF%E6%9C%AC/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '学习',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: false,
+  postUpdate: '2022-01-25 14:57:39'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if (GLOBAL_CONFIG_SITE.isHome && /iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 5.4.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/0A3AE7A53E92C9A9515AA54FBC6FB163.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">10</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">10</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">2</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fa fa-heartbeat"></i><span> 清单</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/Gallery/"><i class="fa-fw fas fa-images"></i><span> 照片</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/img/wallhaven-wqxjm7.png')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">solarboyh的雅间</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fa fa-heartbeat"></i><span> 清单</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/Gallery/"><i class="fa-fw fas fa-images"></i><span> 照片</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">学习</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2021-12-07T05:50:07.000Z" title="发表于 2021-12-07 13:50:07">2021-12-07</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-01-25T06:57:39.908Z" title="更新于 2022-01-25 14:57:39">2022-01-25</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E5%AD%A6%E4%B9%A0/">学习</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="学习"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><ul>
+<li>面向对象三大特征<br>封装，也就是把客观事物封装成抽象的类，并且类可以把自己的数据和方法只让可信的类或者对象操作，对不可信的进行信息隐藏。<br>继承是指这样一种能力：它可以使用现有类的所有功能，并在无需重新编写原来的类的情况下对这些功能进行扩展<br>多态允许将子类类型的指针赋值给父类类型的指针。</li>
+<li>i++， ++i</li>
+<li>重写与重载<br>定义不同—重载是定义相同的方法名，参数不同；重写是子类重写父类的方法<br>范围不同—重载是在一个类中，重写是子类与父类之间的<br>多态不同—重载是编译时的多态性，重写是运行时的多态性<br>返回不同—重载对返回类型没有要求，而重写要求返回类型，有兼容的返回类型<br>参数不同—重载的参数个数、参数类型、参数顺序可以不同，而重写父子方法参数必须相同<br>修饰不同—重载对访问修饰没有特殊要求，重写访问修饰符的限制一定要大于被重写方法的访问修饰符</li>
+<li>接口与抽象类</li>
+</ul>
+<p>1.抽象类允许包含某些方法的实现，而接口是不允许的；从设计级别看，为了实现由抽象类定义的类型，一个类必须定义为一个抽象类的子类，这限制了它在类图中的层次，但是接口没有这个层次的限制。<br>2.在抽象类中提供成员方法的实现细节，该方法只能在接口中为 publicabstract修饰，也就是抽象方法。<br>3.抽象类中的成员变量可以实现多个权限 public private protected final等，接口中只能用 public static final修饰。</p>
+<ul>
+<li>== 与equals</li>
+</ul>
+<p>1.1 基本概念区分<br>1)对于==，比较的是值是否相等<br>如果作用于基本数据类型的变量，则直接比较其存储的 值是否相等，<br>如果作用于引用类型的变量，则比较的是所指向的对象的地址是否相等。<br>其实==比较的不管是基本数据类型，还是引用数据类型的变量，比较的都是值，只是引用类型变量存的值是对象的地址<br>2)对于equals方法，比较的是是否是同一个对象<br>首先，equals()方法不能作用于基本数据类型的变量，<br>另外，equals()方法存在于Object类中，而Object类是所有类的直接或间接父类，所以说所有类中的equals()方法都继承自Object类，在没有重写equals()方法的类中，调用equals()方法其实和使用==的效果一样，也是比较的是引用类型的变量所指向的对象的地址，不过，Java提供的类中，有些类都重写了equals()方法，重写后的equals()方法一般都是比较两个对象的值，比如String类。</p>
+<ul>
+<li><p>线程的创建方式</p>
+</li>
+<li><p>线程池的7个核心参数<br>(1)corePoolSize：线程池中常驻核心线程数<br>(2)maximumPoolSize：线程池能够容纳同时执行的最大线程数<br>(3)keepAliveTime：多余的空闲线程存活时间<br>(4)unit：keepAliveTime的时间单位<br>(5)workQueue：任务队列，被提交但尚未执行的任务<br>(6)threadFactory：表示生成线程池中的工作线程的线程工厂<br>(7)handler：拒绝策略，表示当队列满了并且工作线程大于等于线程池的最大线程数(maximumPoolSize)时如何拒绝。 </p>
+</li>
+<li><p>线程满了有新的请求会怎么<br>可以使用等待队列实现，或者换用无界队列实现的线程池</p>
+</li>
+<li><p>拒绝策略<br>1、AbortPolicy：直接抛出拒绝异常(继承自RuntimeException)，会中断调用者的处理过程。<br>2、CallerRunsPolicy：在调用者线程中，运行当前被丢弃的任务。<br>3、DiscardOledestPolicy：丢弃队列中最老的，然后再次尝试提交新任务。<br>4、DiscardPolicy：默默丢弃无法加载的任务。  </p>
+</li>
+<li><p>class文件的加载过程<br>1、在加载class文件的时候，JVM会先加载类中的所有静态成员( 方法，变量，静态代码块 )都加载到方法区class文件的所处静态区中<br>2、当把所有的静态成员加载完成之后，开始给类中的所有静态成员变量进行默认初始化<br>3、当类中的所有静态成员变量默认初始化之后，接着开始给所有静态成员变量显示赋值。<br>4、当类中所有的静态成员变量显示赋值结束之后，静态代码块才会运行。<br>5、当静态代码块执行结束之后，才表示class文件加载完成</p>
+</li>
+<li><p>hashmap的实现原理</p>
+</li>
+<li><p>hashmap是线程安全的吗<br>HashMap在并发场景中不是线程安全的。比如A希望插入一个key-value对到HashMap中，当获取到对应的链表结点位置时，此时线程A的时间片用完了，而此时线程B被调度得以执行，可能线程B占用了A计算得到的位置，插入了数值。而线程A被切换回来的时候，不知道B已经插入了元素，仍然将元素插入此前计算好的位置，这样就会将B线程的插入记录覆盖掉了，这对应了多线程的put可能导致元素的丢失；</p>
+</li>
+<li><p>优先队列的实现原理<br>　优先队列是一种用来维护一组元素构成的结合S的数据结构，其中每个元素都有一个关键字key，元素之间的比较都是通过key来比较的。优先队列包括最大优先队列和最小优先队列，优先队列的应用比较广泛，比如作业系统中的调度程序，当一个作业完成后，需要在所有等待调度的作业中选择一个优先级最高的作业来执行，并且也可以添加一个新的作业到作业的优先队列中。Java中，PriorityQueue的底层数据结构就是堆（默认是小堆），关于Java的PriorityQueue更多知识请点击：深入理解Java PriorityQueue。<br>　优先队列的实现中，我们可以选择堆数据结构，最大优先队列可以选用大堆，最小优先队列可以选用小堆来实现。下面以最大优先队列来讲解其原理。最大优先队列一般包括将一个元素插入到集合S中、返回集合S中具有最大key的元素、返回并删除集合S中具有最大key的元素等。</p>
+</li>
+<li><p>归并排序，反转链表</p>
+</li>
+<li><p>线程安全的单列模式<br>1、单例类只能有一个实例。<br>2、单例类必须自己创建自己的唯一实例。<br>3、单例类必须给所有其他对象提供这一实例<br>  public class Singleton {  //饿汉式</p>
+<pre><code>  private static Singleton instance = new Singleton();  
+  private Singleton ()&#123;&#125;  
+  public static Singleton getInstance() &#123;  
+  return instance;  
+  &#125;  
+</code></pre>
+<p>  }</p>
+</li>
+<li><p>线程，进程间的通信方式有哪些<br>一、进程间的通信方式<br>管道( pipe )：<br>管道是一种半双工的通信方式，数据只能单向流动，而且只能在具有亲缘关系的进程间使用。进程的亲缘关系通常是指父子进程关系。<br>有名管道 (namedpipe) ：<br>有名管道也是半双工的通信方式，但是它允许无亲缘关系进程间的通信。<br>信号量(semophore ) ：<br>信号量是一个计数器，可以用来控制多个进程对共享资源的访问。它常作为一种锁机制，防止某进程正在访问共享资源时，其他进程也访问该资源。因此，主要作为进程间以及同一进程内不同线程之间的同步手段。<br>消息队列( messagequeue ) ：<br>消息队列是由消息的链表，存放在内核中并由消息队列标识符标识。消息队列克服了信号传递信息少、管道只能承载无格式字节流以及缓冲区大小受限等缺点。<br>信号 (sinal ) ：<br>信号是一种比较复杂的通信方式，用于通知接收进程某个事件已经发生。<br>共享内存(shared memory ) ：<br>共享内存就是映射一段能被其他进程所访问的内存，这段共享内存由一个进程创建，但多个进程都可以访问。共享内存是最快的 IPC 方式，它是针对其他进程间通信方式运行效率低而专门设计的。它往往与其他通信机制，如信号两，配合使用，来实现进程间的同步和通信。<br>套接字(socket ) ：<br>套接口也是一种进程间通信机制，与其他通信机制不同的是，它可用于不同设备及其间的进程通信。<br>二、线程间的通信方式<br>锁机制：包括互斥锁、条件变量、读写锁<br>互斥锁提供了以排他方式防止数据结构被并发修改的方法。<br>读写锁允许多个线程同时读共享数据，而对写操作是互斥的。<br>条件变量可以以原子的方式阻塞进程，直到某个特定条件为真为止。对条件的测试是在互斥锁的保护下进行的。条件变量始终与互斥锁一起使用。<br>信号量机制(Semaphore)：包括无名线程信号量和命名线程信号量<br>信号机制(Signal)：类似进程间的信号处理<br>线程间的通信目的主要是用于线程同步，所以线程没有像进程通信中的用于数据交换的通信机制。</p>
+</li>
+<li><p>tcp，udp</p>
+</li>
+<li><p>ioc aop</p>
+</li>
+</ul>
+<ul>
+<li><p>spring如何解决循环依赖问题</p>
+</li>
+<li><p>spring事务原理</p>
+</li>
+<li><p>隔离级别mysql用的是哪个隔离级别</p>
+</li>
+<li><p>token的组成</p>
+</li>
+<li><p>统一缓存如何实现，怎么保证一致性</p>
+</li>
+</ul>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:841796739@qq.com">solarboyh</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2021/12/07/markdown%E8%AF%AD%E6%B3%95%20-%20%E5%89%AF%E6%9C%AC/">http://example.com/2021/12/07/markdown%E8%AF%AD%E6%B3%95%20-%20%E5%89%AF%E6%9C%AC/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://example.com" target="_blank">solarboyh的雅间</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E5%AD%A6%E4%B9%A0/">学习</a></div><div class="post_share"><div class="social-share" data-image="/img/wallhaven-wqxjm7.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2021/12/09/sql%E8%AF%AD%E5%8F%A5%E8%AE%B0%E5%BD%95/"><img class="prev-cover" src="/img/wallhaven-j3ym5y.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">sql的记录及认识</div></div></a></div><div class="next-post pull-right"><a href="/2021/12/07/markdown%E8%AF%AD%E6%B3%95/"><img class="next-cover" src="/img/wallhaven-wqxjm7.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">Markdown语法</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2021/12/30/mybatis/" title="mybatis复习"><img class="cover" src="/img/wallhaven-3z25r3.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-12-30</div><div class="title">mybatis复习</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/0A3AE7A53E92C9A9515AA54FBC6FB163.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">solarboyh</div><div class="author-info__description"></div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">10</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">标签</div><div class="length-num">10</div></a></div><div class="card-info-data-item is-center"><a href="/categories/"><div class="headline">分类</div><div class="length-num">2</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>公告</span></div><div class="announcement_content">自用小博客</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2021/12/30/mybatis/" title="mybatis复习"><img src="/img/wallhaven-3z25r3.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="mybatis复习"/></a><div class="content"><a class="title" href="/2021/12/30/mybatis/" title="mybatis复习">mybatis复习</a><time datetime="2021-12-30T05:56:07.000Z" title="发表于 2021-12-30 13:56:07">2021-12-30</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/12/15/redis%E4%B8%8E%E5%BE%AE%E6%9C%8D%E5%8A%A1/" title="redis与微服务知识回顾"><img src="/img/wallhaven-57mp67.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="redis与微服务知识回顾"/></a><div class="content"><a class="title" href="/2021/12/15/redis%E4%B8%8E%E5%BE%AE%E6%9C%8D%E5%8A%A1/" title="redis与微服务知识回顾">redis与微服务知识回顾</a><time datetime="2021-12-15T01:17:07.000Z" title="发表于 2021-12-15 09:17:07">2021-12-15</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/12/14/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/" title="消息队列知识小结"><img src="/img/wallhaven-72rxqo.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="消息队列知识小结"/></a><div class="content"><a class="title" href="/2021/12/14/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/" title="消息队列知识小结">消息队列知识小结</a><time datetime="2021-12-14T05:47:07.000Z" title="发表于 2021-12-14 13:47:07">2021-12-14</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/12/14/JVM/" title="JVM学习"><img src="/img/wallhaven-x8eydz.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="JVM学习"/></a><div class="content"><a class="title" href="/2021/12/14/JVM/" title="JVM学习">JVM学习</a><time datetime="2021-12-14T00:47:07.000Z" title="发表于 2021-12-14 08:47:07">2021-12-14</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/12/13/%E7%BD%91%E7%BB%9C/" title="JAVA网络通信"><img src="/img/wallhaven-q2oxll.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="JAVA网络通信"/></a><div class="content"><a class="title" href="/2021/12/13/%E7%BD%91%E7%BB%9C/" title="JAVA网络通信">JAVA网络通信</a><time datetime="2021-12-13T01:47:07.000Z" title="发表于 2021-12-13 09:47:07">2021-12-13</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('/img/wallhaven-y89del.png')"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2022 By solarboyh</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text"><a target="_blank" rel="noopener" href="https://solarboyh.github.io/">Hi, welcome to my blog</a>!</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script>var preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',preloader.endLoading())</script><div class="js-pjax"></div><canvas class="fireworks" mobile="false"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/fireworks.min.js"></script><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="false" data-click="true"></script><script defer="defer" id="fluttering_ribbon" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-fluttering-ribbon.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = true;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
